@@ -1,0 +1,7 @@
+/home/workspace/cmake_learning_proj/cmake-3.29.0-rc1-tutorial-source/Step4_build/CMakeFiles/Tutorial.dir
+/home/workspace/cmake_learning_proj/cmake-3.29.0-rc1-tutorial-source/Step4_build/CMakeFiles/edit_cache.dir
+/home/workspace/cmake_learning_proj/cmake-3.29.0-rc1-tutorial-source/Step4_build/CMakeFiles/rebuild_cache.dir
+/home/workspace/cmake_learning_proj/cmake-3.29.0-rc1-tutorial-source/Step4_build/MathFunctions/CMakeFiles/MathFunctions.dir
+/home/workspace/cmake_learning_proj/cmake-3.29.0-rc1-tutorial-source/Step4_build/MathFunctions/CMakeFiles/SqrtLibrary.dir
+/home/workspace/cmake_learning_proj/cmake-3.29.0-rc1-tutorial-source/Step4_build/MathFunctions/CMakeFiles/edit_cache.dir
+/home/workspace/cmake_learning_proj/cmake-3.29.0-rc1-tutorial-source/Step4_build/MathFunctions/CMakeFiles/rebuild_cache.dir

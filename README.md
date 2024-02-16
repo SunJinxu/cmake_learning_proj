@@ -55,3 +55,18 @@ target_include_directories(MathFunctions INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 * `add_library()` 用于从指定的源文件中创建指定的库类型
 * `target_compile_features()` 表明目标的编译特性，如果编译时没有加入这种特性，会报错。会同时设置C++版本
 * `target_link_libraries()` 表明目标编译时需要链接的库
+
+### Step 4: Adding Generator Expressions
+Generator expressions是在构建系统生成过程中处理每个配置项信息时生成的。
+#### exercise01. Adding Compiler Warning Flags with Generator Expressions
+常用的Generator expressions方式是条件性地添加一些编译选项标志；更高级的做法是使用INTERFACE库的方法设置，以拥有传递性
+* `cmake-generator-expressions(7)` 有相当多expression类型，参考https://cmake.org/cmake/help/latest/manual/cmake-generator-expressions.7.html
+```
+# 一些编译选项
+$<COMPILE_LANG_AND_ID:language,compiler_ids>
+当实际上执行解释编译的语言或者编译器id与预期的逗号分隔的任意编译器id符合时为true，否则为false
+
+```
+* `cmake_minimum_required()` 用于限定cmake项目的版本，为在其他环境中编译提供基本的版本信息
+* `set()` 将一般变量、缓存entry、环境变量，如果是list需要使用逗号隔开
+* `target_compile_options()` 为COMPILE_OPTIONS或INTERFACE_COMPILE_OPTIONS的目标属性提供选择，在编译指定目标时会被使用，目标在此之前必须被add_executable()或add_library()所处理，并且不能为Alias
