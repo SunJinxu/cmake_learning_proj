@@ -33,4 +33,25 @@ https://cmake.org/cmake/help/latest/guide/tutorial/index.html
 允许用户根据需求选择调用自定义的sqrt库还是系统提供的sqrt库
 * `if()` 类似于编程语言的条件语句用法，执行符合条件的代码块。可以对变量，文件，版本号等内容进行判断
 * `option()` 提供一个用户可以条件选择的一个option选项
-* `target_compile_definitions()` 指定编译目标的定义，定义提供给与预处理器使用。并且目标在此之前必须被add_executable()或add_library()所处理，并且不能为Alias
+* `target_compile_definitions()` 指定编译目标的宏定义，定义提供给与预处理器使用。并且目标在此之前必须被add_executable()或add_library()所处理，并且不能为Alias
+
+### Step3: Adding Usage Requirements for a Library
+#### exercise01. Adding Usage Requirements for a Library
+设置对目标参数的使用要求，来提供对库、可执行程序更好的控制。这些都是对于目标本身，部分涉及到调用到目标时设置的约束。
+* ``target_compile_definitions()` 指定编译目标的宏定义，定义提供给与预处理器使用。目标在此之前必须被add_executable()或add_library()所处理，并且不能为Alias
+* ``target_compile_options()` 为COMPILE_OPTIONS或INTERFACE_COMPILE_OPTIONS的目标属性提供选择，在编译指定目标时会被使用，目标在此之前必须被add_executable()或add_library()所处理，并且不能为Alias
+* ``target_include_directories()` 指定在编译目标时需要include文件夹。目标在此之前必须被add_executable()或add_library()所处理，并且不能为Alias
+```
+# 意味着任何链接MathFunctions库的行为，都会同时导致包含当前的源码目录头文件
+add_library(MathFunctions MathFunctions.cxx)
+target_include_directories(MathFunctions INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
+```
+* ``target_link_directories()` 指定在编译目标时需要搜索文件夹是否包含相应的链接库文件
+* ``target_link_options()` 为可执行文件、库文件链接步骤添加选项。目标在此之前必须被add_executable()或add_library()所处理，并且不能为Alias
+* ``target_precompile_headers()` 添加需要被预编译的头文件，用于加快编译速度
+* ``target_sources()` 用于指定编译目标时需要添加的源文件。目标在此之前必须被add_executable()或add_library()所处理，并且不能为Alias
+#### exercise02. Setting the C++ Standard with Interface Libraries
+使用INTERFACE类型库作为示例，描述generator expression的常用用法。同时为多个目标设置通用用法
+* `add_library()` 用于从指定的源文件中创建指定的库类型
+* `target_compile_features()` 表明目标的编译特性，如果编译时没有加入这种特性，会报错。会同时设置C++版本
+* `target_link_libraries()` 表明目标编译时需要链接的库
