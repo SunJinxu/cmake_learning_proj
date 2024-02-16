@@ -70,3 +70,24 @@ $<COMPILE_LANG_AND_ID:language,compiler_ids>
 * `cmake_minimum_required()` 用于限定cmake项目的版本，为在其他环境中编译提供基本的版本信息
 * `set()` 将一般变量、缓存entry、环境变量，如果是list需要使用逗号隔开
 * `target_compile_options()` 为COMPILE_OPTIONS或INTERFACE_COMPILE_OPTIONS的目标属性提供选择，在编译指定目标时会被使用，目标在此之前必须被add_executable()或add_library()所处理，并且不能为Alias
+
+### Step 5: Installing and Testing
+对于一个项目，不光应该可以生成可执行文件，同时也有一些是installable的
+#### exercise01. Install Rules
+* `install()` 功能是为指定目标生成安装规则，其中可以指定安装目标和安装路径等信息
+```
+DESTINATION <dir> 指定项目的安装位置
+PERMISSIONS <permission>... 指定安装项目的访问权限
+CONFIGURATIONS <config>... 指定生成Debug、Release版本或其他类型的目标文件
+COMPONENT <component> 指定某个安装组件与哪种安装组件组合，比如Runtime或者Deployment
+EXCLUDE_FROM_ALL 在full installation过程中指定排除在外的文件
+RENAME <name> 在安装过程中为文件指定的另外的别名
+OPTIONAL 表明某组件是可选的，即使缺少也不生成报错信息
+```
+#### exercise02. Testing Support
+CTest提供了对项目的测试功能，并且与googletest这种测试框架具有一定的相关性
+* `enable_testing()` 允许对当前文件夹及下属文件夹开启测试功能
+* `add_test()` 添加一个通过ctest运行的测试，可以指定名字、断言、文件夹以及属性等
+* `function()` 编写一个方程，可以接受参数并且可以被调用
+* `set_tests_properties()` 使用generator expressions为测试设置属性，如果没有查找到该test会报错
+* `ctest` 是cmake测试驱动项目的可执行部分
