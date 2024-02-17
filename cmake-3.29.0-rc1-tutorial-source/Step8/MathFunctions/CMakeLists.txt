@@ -1,3 +1,4 @@
+include(MakeTable.cmake)
 add_library(MathFunctions MathFunctions.cxx)
 
 # should we use our own math functions
@@ -6,8 +7,10 @@ if (USE_MYMATH)
   target_compile_definitions(MathFunctions PRIVATE "USE_MYMATH")
 
   # library that just does sqrt
-  add_library(SqrtLibrary STATIC
-              mysqrt.cxx
+  add_library(SqrtLibrary STATIC)
+  target_sources(SqrtLibrary PRIVATE mysqrt.cxx ${CMAKE_CURRENT_BINARY_DIR}/Table.h)
+  target_include_directories(SqrtLibrary PRIVATE
+              ${CMAKE_CURRENT_BINARY_DIR}
               )
 
   # link SqrtLibrary to tutorial_compiler_flags
