@@ -109,3 +109,16 @@ CTest提供了对项目的测试功能，并且与googletest这种测试框架�
 ### Step 8: Adding a Custom Command and Generated File
 使用用户自定义命令生成文件，案例中生成了一张迭代表使用
 * `add_custom_command` 使用用户自定义命令生成文件
+
+### Step 9: Packaging an Installer
+使用CPack为不同的用户提供binary版和source版的安装包
+对顶层CMakeLists.txt文件设置的具体形式为:  
+```
+include(InstallRequiredSystemLibraries)
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/License.txt")
+set(CPACK_PACKAGE_VERSION_MAJOR "${Tutorial_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${Tutorial_VERSION_MINOR}")
+set(CPACK_SOURCE_GENERATOR "TGZ")
+include(CPack)
+```
+CPack也有一系列generators参数可以进行自定义配置，也可以使用`cpack --config CPackSourceConfig.cmake`这种事先编写好的pack配置文件进行打包
