@@ -91,3 +91,15 @@ CTest提供了对项目的测试功能，并且与googletest这种测试框架�
 * `function()` 编写一个方程，可以接受参数并且可以被调用
 * `set_tests_properties()` 使用generator expressions为测试设置属性，如果没有查找到该test会报错
 * `ctest` 是cmake测试驱动项目的可执行部分
+
+### Step6: Adding Support for a Testing Dashboard
+将CTest的测试结果放入Dashboard中
+#### exercise01. Send Results to a Testing Dashboard
+* `ctest(1)` 是cmake测试驱动项目的可执行部分
+* `include()` 加载并执行给定文件中的CMake代码
+* `CTest` 使用CTest/CDash配置一个项目的测试部分，需要在顶层目录中的CMakeLists.txt中写入include(CTest)，同时要创建CTestConfig.cmake文件，用于配置CTest
+
+### Step 7: Adding System Introspection
+这部分考虑到了一些平台上缺少cmake中的一些特性，例如`log`和`exp`方程的情况
+#### exercise01. Assessing Dependency Availability
+根据平台系统的不同更改cmake的实现
