@@ -103,3 +103,5 @@ CTest提供了对项目的测试功能，并且与googletest这种测试框架�
 这部分考虑到了一些平台上缺少cmake中的一些特性，例如`log`和`exp`方程的情况
 #### exercise01. Assessing Dependency Availability
 根据平台系统的不同更改cmake的实现
+* `CheckCXXSourceCompiles` 检查给定C++源码是否可以被编译并链接到可执行文件中（必须具备main方程），结果缓存在resultVar中
+* `target_compile_definitions()` 指定编译目标的宏定义，定义提供给与预处理器使用。并且目标在此之前必须被add_executable()或add_library()所处理，并且不能为Alias
