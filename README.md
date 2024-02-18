@@ -122,3 +122,13 @@ set(CPACK_SOURCE_GENERATOR "TGZ")
 include(CPack)
 ```
 CPack也有一系列generators参数可以进行自定义配置，也可以使用`cpack --config CPackSourceConfig.cmake`这种事先编写好的pack配置文件进行打包
+
+### Step 10: Selecting Static or Shared Libraries
+使用`BUILD_SHARED_LIBS`变量来决定生成动态库、静态库或者其他类型，此变量需要放在构建目标项目的顶级目录cmake文件中的
+* `BUILD_SHARED_LIBS` 此变量通常与option()联用，一旦开启，那么库除非指定为静态，否则都被构建为动态库
+* `POSITION_INDEPENDENT_CODE` 该标记表明要对该目标采用PIC编译
+```
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}") # 静态库输出目录设置
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}") # 动态库输出目录设置
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}") # 可执行文件输出目录设置
+```
