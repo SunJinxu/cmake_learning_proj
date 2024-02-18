@@ -137,3 +137,9 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}") # 可执行文件输
 添加一些必要信息，以便其他项目在本地构建、安装或打包的时候能顺利进行 
 * `install()` 中加入`EXPORT`关键字，从installation tree中列举的install command中设生成一个import所有targets的CMakeLists.txt
 * `find_package()` 命令可以从外部寻找库，并根据给出的额外信息进行加载
+
+### Step 12: Packaging Debug and Release
+关于如何同时在build文件夹中生成debug、release、minSizeRel等版本的目标。这里debug版本都使用`d`作为后缀
+* `CMAKE_DEBUG_POSTFIX` 为debug版本目标指定的后缀
+* `SOVERSION` 共享库的ABI版本号
+* `CPACK_INSTALL_CMAKE_PROJECTS` 用于指定对哪些project进行打包
