@@ -132,3 +132,8 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}") # 静态库输出目
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}") # 动态库输出目录设置
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}") # 可执行文件输出目录设置
 ```
+
+### Step 11: Adding Export Configuration
+添加一些必要信息，以便其他项目在本地构建、安装或打包的时候能顺利进行 
+* `install()` 中加入`EXPORT`关键字，从installation tree中列举的install command中设生成一个import所有targets的CMakeLists.txt
+* `find_package()` 命令可以从外部寻找库，并根据给出的额外信息进行加载
