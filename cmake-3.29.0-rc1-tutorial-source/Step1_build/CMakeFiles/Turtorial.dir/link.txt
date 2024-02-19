@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/Turtorial.dir/tutorial.cxx.o -o Turtorial 
